@@ -11,12 +11,15 @@ XPermissions接入只需3步
 
 1、在项目的 BaseActivity上初始化XPermission
      
-    XPermissions.init(this);
+    
+    XPermissions.init(this);
+      
 
-2、调用申请运行时权限   
-  
-    XPermissions.requestPermissions().setRequestCode(203).setShouldShow(true).setPermissions(new String[]        
-    {Manifest.permission.READ_PHONE_STATE
+2、调用申请运行时权限
+
+
+     XPermissions.requestPermissions().setRequestCode(203).setShouldShow(true).setPermissions(new String[]     
+     {Manifest.permission.READ_PHONE_STATE
                         ,Manifest.permission.CAMERA}).setOnXPermissionsListener(new XPermissionsListener() {
                     @Override
                     public void onXPermissions(int requestCode, int resultCode) {
@@ -28,7 +31,8 @@ XPermissions接入只需3步
                         }
                     }
                 }).builder();
-  
+                
+                
 3、重写activity的onRequestPermissionsResult方法
   
      @TargetApi(23)
