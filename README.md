@@ -46,14 +46,20 @@ XPermissions接入只需3步
     
  4、builder参数说明
     
-     //申请权限的code
-     private int requestCode;
-     //需要申请的权限数组
-     private String[] permissions;
-     //是否需要显示说明申请权限的弹窗提示？
-     private boolean shouldShow;
-     //申请权限回调
-     private XPermissionsListener xPermissionsListener;
+     
+      //申请权限的code
+      
+      private int requestCode;
+      //需要申请的权限数组
+      
+      private String[] permissions;
+      //是否需要显示说明申请权限的弹窗提示？
+      
+      private boolean shouldShow;
+      //申请权限回调
+      
+      private XPermissionsListener xPermissionsListener;
+     
     
  5、下载Download下的arr直接引用即可使用，或者引用library module
    
