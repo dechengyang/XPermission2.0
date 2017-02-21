@@ -9,31 +9,24 @@ Android6.0上需要运行时的权限，如果我们不处理那么在6.0上权�
 
 XPermissions接入只需3步
 
-1、请求我们需要申请的权限
-     
-     XPermissions.requestPermissions(MainActivity.this,203,new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA});
+1、在项目的 BaseActivity上初始化XPermission
+     
+   XPermissions.init(this);
 
-2、需要写个方法来接收回调
-    
-     @XPermissionInject(requestCode=203)
-     public void test(int result){
-        Logger.log("result:"+result);
-
-        switch (result){
-
-            //权限申请成功
-            case XPermissions.PERMISSION_SUCCESS:
-            break;
-
-            //权限申请失败
-            case XPermissions.PERMISSION_FAIL:
-                break;
-
-            //跳去设置权限
-            case XPermissions.PERMISSION_SETTING:
-                break;
-        }
-    }
+2、调用申请运行时权限   
+  
+    XPermissions.requestPermissions().setRequestCode(203).setShouldShow(true).setPermissions(new String[]     {Manifest.permission.READ_PHONE_STATE
+                        ,Manifest.permission.CAMERA}).setOnXPermissionsListener(new XPermissionsListener() {
+                    @Override
+                    public void onXPermissions(int requestCode, int resultCode) {
+                        Logger.log("resultCode:"+resultCode);
+                        if (resultCode == XPermissions.PERMISSION_SUCCESS){
+                            //权限申请成功，可以继续往下走
+                        }else{
+                            //权限申请失败，此时应该关闭界面或者退出程序
+                        }
+                    }
+                }).builder();
   
 3、重写activity的onRequestPermissionsResult方法
   
@@ -41,10 +34,24 @@ XPermissions接入只需3步
      @Override
      public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        XPermissions.handlerPermissionResult(this,requestCode,permissions,grantResults);
+        XPermissions.handlerPermissionResult(requestCode,permissions,grantResults);
+
 
     }
-  
+    
+ 4、builder参数说明
+    
+     //申请权限的code
+    private int requestCode;
+    //需要申请的权限数组
+    private String[] permissions;
+    //是否需要显示说明申请权限的弹窗提示？
+    private boolean shouldShow;
+    //申请权限回调
+    private XPermissionsListener xPermissionsListener;
+    
+ 5、下载Download下的arr直接引用即可使用，或者引用library module
+   
   注：对于弹框的提示，可以提示更友好的，demo只是一个测试
     
     <string name="calendar">查看日历</string>
