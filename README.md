@@ -11,11 +11,12 @@ XPermissions接入只需3步
 
 1、在项目的 BaseActivity上初始化XPermission
      
-   XPermissions.init(this);
+    XPermissions.init(this);
 
 2、调用申请运行时权限   
   
-    XPermissions.requestPermissions().setRequestCode(203).setShouldShow(true).setPermissions(new String[]     {Manifest.permission.READ_PHONE_STATE
+    XPermissions.requestPermissions().setRequestCode(203).setShouldShow(true).setPermissions(new String[]        
+    {Manifest.permission.READ_PHONE_STATE
                         ,Manifest.permission.CAMERA}).setOnXPermissionsListener(new XPermissionsListener() {
                     @Override
                     public void onXPermissions(int requestCode, int resultCode) {
@@ -42,13 +43,13 @@ XPermissions接入只需3步
  4、builder参数说明
     
      //申请权限的code
-    private int requestCode;
-    //需要申请的权限数组
-    private String[] permissions;
-    //是否需要显示说明申请权限的弹窗提示？
-    private boolean shouldShow;
-    //申请权限回调
-    private XPermissionsListener xPermissionsListener;
+     private int requestCode;
+     //需要申请的权限数组
+     private String[] permissions;
+     //是否需要显示说明申请权限的弹窗提示？
+     private boolean shouldShow;
+     //申请权限回调
+     private XPermissionsListener xPermissionsListener;
     
  5、下载Download下的arr直接引用即可使用，或者引用library module
    
